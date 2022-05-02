@@ -1,0 +1,23 @@
+class Solution:
+    def longestUniqueSubsttr(self, s):
+        
+        d = {}
+        i = j = maxlen = 0
+        
+        while(j < len(s)):
+            
+            if s[j] not in d:
+                d[s[j]] = 1
+                maxlen = max(maxlen, j-i+1)
+                j += 1
+            else:
+                d[s[j]] += 1
+                while len(d) < j-i+1:
+                    if d[s[i]] == 1:
+                        del d[s[i]]
+                    else:
+                        d[s[i]] -= 1
+                    i += 1
+                j += 1 
+            
+        return maxlen
