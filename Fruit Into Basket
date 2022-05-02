@@ -1,0 +1,21 @@
+from collections import defaultdict
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        
+        d = defaultdict(int)
+        i = j = maxlen= 0
+        
+        while j < len(fruits):
+        
+            d[fruits[j]] += 1
+            while len(d) > 2:
+                if d[fruits[i]] == 1:
+                    del d[fruits[i]]
+                else:
+                    d[fruits[i]] -= 1
+                i += 1
+                
+            maxlen = max(maxlen, j-i+1)
+            j += 1
+            
+        return maxlen
