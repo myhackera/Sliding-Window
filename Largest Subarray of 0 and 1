@@ -1,0 +1,16 @@
+
+class Solution:
+    def maxLen(self,arr, N):
+        
+        d = { 0: -1 }
+        sum = 0
+        maxlen = 0
+        for i in range(N):
+            if arr[i] == 0:
+                arr[i] = -1
+            sum += arr[i]
+            if sum in d:
+                maxlen = max(maxlen, i-d[sum])
+            else:
+                d[sum] = i
+        return maxlen
